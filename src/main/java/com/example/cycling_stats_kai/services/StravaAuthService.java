@@ -4,6 +4,7 @@ import com.example.cycling_stats_kai.config.StravaProperties;
 import com.example.cycling_stats_kai.model.DTOs.StravaTokenDTO;
 import com.example.cycling_stats_kai.model.StravaToken;
 import com.example.cycling_stats_kai.repositories.StravaTokenRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 
 @Service
+@Slf4j
 public class StravaAuthService {
 
     private final RestClient stravaAuthClient;
@@ -47,6 +49,9 @@ public class StravaAuthService {
     }
 
     public StravaTokenDTO refresh(String refreshToken){
+
+        log.info("Refreshing Strava access token");
+
         MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
         body.add("client_id", props.clientId());
         body.add("client_secret", props.clientSecret());
