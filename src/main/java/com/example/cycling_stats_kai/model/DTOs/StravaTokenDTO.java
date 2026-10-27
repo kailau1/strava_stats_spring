@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Getter
 @Setter
-public class AccessTokenDTO {
+public class StravaTokenDTO {
 
     @JsonProperty("access_token")
     private String accessToken;

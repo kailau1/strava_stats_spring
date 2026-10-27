@@ -21,12 +21,6 @@ public class CyclingStatsKaiApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner checkStravaAuth(StravaAuthService authService) {
-		return args -> {
-			var token = authService.getAccessToken();
-			System.out.println("Got Strava token, expires in: %s, expires at: %s".formatted(token.getExpiresIn(), Instant.ofEpochSecond(token.getExpiresAt())));
-		};
-	}
+
 }
 

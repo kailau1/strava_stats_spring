@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class StravaService {
+public class StravaActivitiesService {
 
     public void getActivities(){
 
