@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Kai Lau/.jdks/**)",
+      "Read(//c/Program Files/**)",
+      "PowerShell(.\\\\mvnw.cmd -v)"
+    ]
+  }
+}
