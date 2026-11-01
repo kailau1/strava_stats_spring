@@ -19,7 +19,7 @@ public class CyclingStatsKaiApplication {
 
 	@Bean
 	@Profile("dev")
-	CommandLineRunner checkStravaAuth(StravaActivitiesService stravaActivitiesService) {
+	CommandLineRunner fetchActivitiesOnStartup(StravaActivitiesService stravaActivitiesService) {
 		return args -> stravaActivitiesService.getActivities();
 	}
 }

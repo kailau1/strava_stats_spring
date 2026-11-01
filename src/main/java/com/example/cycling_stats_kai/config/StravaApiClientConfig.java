@@ -30,7 +30,6 @@ public class StravaApiClientConfig {
 
                     ClientHttpResponse response = execution.execute(request, body);
                     log.debug("Response {}", response.getStatusCode());
-                    log.
                     return response;
                 })
                 .build();

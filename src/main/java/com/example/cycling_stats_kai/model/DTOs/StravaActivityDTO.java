@@ -1,7 +1,6 @@
 package com.example.cycling_stats_kai.model.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
