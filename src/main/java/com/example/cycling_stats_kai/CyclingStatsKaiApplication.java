@@ -20,7 +20,7 @@ public class CyclingStatsKaiApplication {
 	@Bean
 	@Profile("dev")
 	CommandLineRunner fetchActivitiesOnStartup(StravaActivitiesService stravaActivitiesService) {
-		return args -> stravaActivitiesService.getActivities();
+		return args -> stravaActivitiesService.fetchAndSaveActivities();
 	}
 }
 
