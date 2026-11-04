@@ -10,6 +10,9 @@ import java.time.Instant;
 @Setter
 public class StravaActivityDTO {
 
+
+    private String id;
+
     private double distance;
 
     @JsonProperty("moving_time")

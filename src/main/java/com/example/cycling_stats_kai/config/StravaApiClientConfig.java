@@ -14,7 +14,6 @@ import org.springframework.web.client.RestClient;
 public class StravaApiClientConfig {
 
     @Bean
-    @Qualifier("stravaApiClient")
     public RestClient stravaApiClient(StravaProperties props, StravaAuthService authService) {
         return RestClient.builder()
                 .baseUrl(props.baseUrl())

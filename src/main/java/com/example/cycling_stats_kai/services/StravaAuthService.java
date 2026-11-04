@@ -4,6 +4,8 @@ import com.example.cycling_stats_kai.config.StravaProperties;
 import com.example.cycling_stats_kai.model.DTOs.StravaTokenDTO;
 import com.example.cycling_stats_kai.model.StravaToken;
 import com.example.cycling_stats_kai.repositories.StravaTokenRepository;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class StravaAuthService {
 
     private final RestClient stravaAuthClient;
@@ -26,17 +29,6 @@ public class StravaAuthService {
     private final Clock clock;
     private static final long TOKEN_ID = 1L;
 
-    public StravaAuthService(@Qualifier("stravaAuthClient") RestClient stravaAuthClient,
-                             StravaProperties props,
-                             StravaTokenRepository stravaTokenRepository,
-                             Clock clock) {
-
-        this.stravaAuthClient = stravaAuthClient;
-        this.props = props;
-        this.stravaTokenRepository = stravaTokenRepository;
-        this.clock = clock;
-
-    }
 
     public String getAccessToken() {
 
