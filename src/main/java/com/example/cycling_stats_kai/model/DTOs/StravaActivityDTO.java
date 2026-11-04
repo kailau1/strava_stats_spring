@@ -2,16 +2,18 @@ package com.example.cycling_stats_kai.model.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class StravaActivityDTO {
 
-
-    private String id;
+    @JsonProperty("id")
+    private long id;
 
     private double distance;
 
