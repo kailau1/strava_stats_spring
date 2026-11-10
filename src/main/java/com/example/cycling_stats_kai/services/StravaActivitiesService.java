@@ -10,8 +10,11 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 
 @Service
@@ -29,12 +32,23 @@ public class StravaActivitiesService {
         this.stravaActivityRepository = stravaActivityRepository;
     }
 
-    public List<StravaActivityDTO> fetchAndSaveActivities(){
+    public List<StravaActivityDTO> fetchAndSaveLatestActivities(){
 
         log.info("Attempting to fetch activities.");
 
+        Optional<Instant> latestDate = getMostRecentActivityDate();
+
+        long epochSeconds = latestDate
+                .map(Instant::getEpochSecond)
+                .orElse(0L);
+
+        log.info("Start date Fetched:" + latestDate);
+
         List<StravaActivityDTO> response = this.stravaApiClient.get()
-                .uri("/athlete/activities")
+                .uri(uriBuilder -> uriBuilder
+                        .path("/athlete/activities")
+                        .queryParam("after", epochSeconds)
+                        .build())
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<StravaActivityDTO>>() {
                 });
@@ -53,5 +67,11 @@ public class StravaActivitiesService {
         this.stravaActivityRepository.saveAll(activitiesToSave);
 
         return response;
+    }
+
+    public Optional<Instant> getMostRecentActivityDate(){
+        Optional<Instant> date = this.stravaActivityRepository.findLatestActivityDate();
+
+        return date;
     }
 }
