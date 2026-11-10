@@ -18,7 +18,7 @@ public class StravaActivityDTO {
     private double distance;
 
     @JsonProperty("moving_time")
-    private double movingTime;
+    private Integer movingTime;
 
     @JsonProperty("total_elevation_gain")
     private double totalElevationGain;
@@ -34,6 +34,9 @@ public class StravaActivityDTO {
 
     @JsonProperty("start_date")
     private Instant startDate;
+
+    @JsonProperty("sport_type")
+    private String sportType;
 
 }
 

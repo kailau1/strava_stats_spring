@@ -17,7 +17,7 @@ public class StravaActivity {
 
     private double distance;
 
-    private double movingTime;
+    private Integer movingTime;
 
     private double totalElevationGain;
 
@@ -28,4 +28,6 @@ public class StravaActivity {
     private Double averageWatts;
 
     private Instant startDate;
+
+    private String sportType;
 }

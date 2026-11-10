@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
         activity.setMovingTime(stravaActivityDTO.getMovingTime()); // Left in seconds so multiple calculations can be done in future.
         activity.setStartDate(stravaActivityDTO.getStartDate()); // Instant
         activity.setId(stravaActivityDTO.getId());
+        activity.setSportType(stravaActivityDTO.getSportType());
 
         return activity;
     }

@@ -36,7 +36,7 @@ public class StravaActivitiesService {
 
         log.info("Attempting to fetch activities.");
 
-        Optional<Instant> latestDate = getMostRecentActivityDate();
+        Optional<Instant> latestDate = this.stravaActivityRepository.findLatestActivityDate();
 
         long epochSeconds = latestDate
                 .map(Instant::getEpochSecond)
@@ -48,6 +48,8 @@ public class StravaActivitiesService {
                 .uri(uriBuilder -> uriBuilder
                         .path("/athlete/activities")
                         .queryParam("after", epochSeconds)
+                        .queryParam("per_page", 100)
+                        .queryParam("sport_type", "cycling")
                         .build())
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<StravaActivityDTO>>() {
@@ -69,9 +71,4 @@ public class StravaActivitiesService {
         return response;
     }
 
-    public Optional<Instant> getMostRecentActivityDate(){
-        Optional<Instant> date = this.stravaActivityRepository.findLatestActivityDate();
-
-        return date;
-    }
 }
