@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
     public StravaActivity toEntity(StravaActivityDTO stravaActivityDTO) {
         StravaActivity activity = new StravaActivity();
 
-        activity.setAverageSpeed(stravaActivityDTO.getAverageSpeed() * 3.6); // km/h
-        activity.setDistance(stravaActivityDTO.getDistance() / 1000); // km
-        activity.setAverageWatts(stravaActivityDTO.getAverageWatts()); // W
-        activity.setMaxSpeed(stravaActivityDTO.getMaxSpeed() * 3.6); // km/h
-        activity.setTotalElevationGain(stravaActivityDTO.getTotalElevationGain()); // meters
-        activity.setMovingTime(stravaActivityDTO.getMovingTime()); // Left in seconds so multiple calculations can be done in future.
-        activity.setStartDate(stravaActivityDTO.getStartDate()); // Instant
-        activity.setId(stravaActivityDTO.getId());
-        activity.setSportType(stravaActivityDTO.getSportType());
+        activity.setAverageSpeed(stravaActivityDTO.averageSpeed() * 3.6); // km/h
+        activity.setDistance(stravaActivityDTO.distance() / 1000); // km
+        activity.setAverageWatts(stravaActivityDTO.averageWatts()); // W
+        activity.setMaxSpeed(stravaActivityDTO.maxSpeed() * 3.6); // km/h
+        activity.setTotalElevationGain(stravaActivityDTO.totalElevationGain()); // meters
+        activity.setMovingTime(stravaActivityDTO.movingTime()); // Left in seconds so multiple calculations can be done in future.
+        activity.setStartDate(stravaActivityDTO.startDate()); // Instant
+        activity.setId(stravaActivityDTO.id());
+        activity.setSportType(stravaActivityDTO.sportType());
 
         return activity;
     }
