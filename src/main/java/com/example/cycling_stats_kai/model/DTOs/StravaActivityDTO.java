@@ -1,42 +1,21 @@
 package com.example.cycling_stats_kai.model.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.Instant;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class StravaActivityDTO {
+public record StravaActivityDTO(
 
-    @JsonProperty("id")
-    private long id;
+    long id,
+    double distance,
+    @JsonProperty("moving_time") Integer movingTime,
+    @JsonProperty("total_elevation_gain") double totalElevationGain,
+    @JsonProperty("average_speed") double averageSpeed,
+    @JsonProperty("max_speed") double maxSpeed,
+    @JsonProperty("average_watts") Double averageWatts,
+    @JsonProperty("start_date") Instant startDate,
+    @JsonProperty("sport_type") String sportType
 
-    private double distance;
-
-    @JsonProperty("moving_time")
-    private Integer movingTime;
-
-    @JsonProperty("total_elevation_gain")
-    private double totalElevationGain;
-
-    @JsonProperty("average_speed")
-    private double averageSpeed;
-
-    @JsonProperty("max_speed")
-    private double maxSpeed;
-
-    @JsonProperty("average_watts")
-    private Double averageWatts;
-
-    @JsonProperty("start_date")
-    private Instant startDate;
-
-    @JsonProperty("sport_type")
-    private String sportType;
-
-}
+    )
+{}
 
