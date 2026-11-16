@@ -4,10 +4,8 @@ import com.example.cycling_stats_kai.config.StravaProperties;
 import com.example.cycling_stats_kai.model.DTOs.StravaTokenDTO;
 import com.example.cycling_stats_kai.model.StravaToken;
 import com.example.cycling_stats_kai.repositories.StravaTokenRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -41,7 +39,7 @@ public class StravaAuthService {
 
         String refreshToken = saved.map(StravaToken::getRefreshToken).orElse(props.refreshToken());
 
-        return refresh(refreshToken).getAccessToken();
+        return refresh(refreshToken).accessToken();
 
     }
 
@@ -61,8 +59,8 @@ public class StravaAuthService {
                 .retrieve()
                 .body(StravaTokenDTO.class);
 
-        StravaToken newToken = new StravaToken(TOKEN_ID, response.getAccessToken(), Instant.ofEpochSecond(response.getExpiresAt()),
-                response.getRefreshToken());
+        StravaToken newToken = new StravaToken(TOKEN_ID, response.accessToken(), Instant.ofEpochSecond(response.expiresAt()),
+                response.refreshToken());
 
         stravaTokenRepository.save(newToken);
 
