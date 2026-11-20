@@ -49,7 +49,6 @@ public class StravaActivitiesService {
                         .path("/athlete/activities")
                         .queryParam("after", epochSeconds)
                         .queryParam("per_page", 100)
-                        .queryParam("sport_type", "cycling")
                         .build())
                 .retrieve()
                 .body(new ParameterizedTypeReference<List<StravaActivityDTO>>() {
