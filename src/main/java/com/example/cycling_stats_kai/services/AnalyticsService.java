@@ -13,13 +13,7 @@ public class AnalyticsService {
         this.stravaActivityRepository = stravaActivityRepository;
     }
 
-    public OverallStatsResponse getOverallStats(){
-        return new OverallStatsResponse(
-                this.stravaActivityRepository.findTotalDistance(),
-                this.stravaActivityRepository.findTotalMovingTime(),
-                this.stravaActivityRepository.findTotalRides(),
-                this.stravaActivityRepository.findTotalAverageSpeed(),
-                this.stravaActivityRepository.findMaxSpeed()
-                );
+    public OverallStatsResponse getOverallStats() {
+        return this.stravaActivityRepository.findOverallStats();
     }
 }
