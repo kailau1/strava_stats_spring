@@ -19,10 +19,7 @@ public class AnalyticsService {
         this.stravaActivityRepository = stravaActivityRepository;
     }
 
-    public OverallStatsResponse getOverallStats(
-            AnalyticsPeriod period,
-            Instant start,
-            Instant end) {
+    public OverallStatsResponse getOverallStats(AnalyticsPeriod period, Instant start, Instant end) {
 
         if (start != null || end != null) {
 
@@ -44,33 +41,23 @@ public class AnalyticsService {
                 );
             }
 
-            return stravaActivityRepository.findOverallStatsBetween(start, end);
+            return stravaActivityRepository.findOverallStats(start, end);
         }
 
-        if (period == null) {
-            period = AnalyticsPeriod.ALL_TIME;
-        }
 
-        if (period == AnalyticsPeriod.ALL_TIME) {
-            return stravaActivityRepository.findOverallStatsAllTime();
-        }
-
-        Instant periodStart = calculateStartDate(period);
-
-        return stravaActivityRepository.findOverallStatsSince(periodStart);
+        return stravaActivityRepository.findOverallStats(calculateStartDate(period), Instant.now());
     }
 
-    private Instant calculateStartDate(AnalyticsPeriod period) {
-        Instant start = switch (period) {
+    private Instant calculateStartDate(AnalyticsPeriod period) throws IllegalArgumentException {
+        return switch (period) {
             case LAST_7_DAYS -> Instant.now().minus(7, ChronoUnit.DAYS);
             case LAST_30_DAYS -> Instant.now().minus(30, ChronoUnit.DAYS);
             case YTD -> LocalDate.now()
                     .withDayOfYear(1)
                     .atStartOfDay(ZoneId.of("Europe/London"))
                     .toInstant();
-            case ALL_TIME -> null;
+            case ALL_TIME -> Instant.EPOCH;
         };
 
-        return start;
     }
 }
